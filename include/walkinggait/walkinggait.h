@@ -71,6 +71,4 @@ bool continuousback_flag = false;
 int pre_x = 0.0;
 int IsWalking = false;
 
-string parameter_path = "N";
-
 #endif /* LISTENER_NODE_HPP_ */

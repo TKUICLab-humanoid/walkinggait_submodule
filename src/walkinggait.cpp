@@ -32,7 +32,7 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
         char line[SIZE];
         fstream fin;
         char path[200];
-        strcpy(path, parameter_path.c_str());
+        strcpy(path, tool->parameterPath.c_str());
 
         if(parameterinfo->walking_mode == 1)//reload
         {
@@ -139,7 +139,7 @@ void save_parameter(const tku_msgs::parameter& msg)
     string savedText;
     fstream fp;
     char path[200];
-    strcpy(path, parameter_path.c_str());
+    strcpy(path, tool->parameterPath.c_str());
     switch (msg.mode)
     {
     case 4:
@@ -411,7 +411,7 @@ void Getparameter(const tku_msgs::Interface& msg)
     pre_x = parameterinfo->X;
 
     char path[200];
-    strcpy(path, parameter_path.c_str());
+    strcpy(path, tool->parameterPath.c_str());
 
     if( parameterinfo->walking_mode == 1 )//reload
     {
@@ -654,7 +654,7 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
     char line[SIZE];
     fstream fin;
     char path[200];
-    strcpy(path, parameter_path.c_str());
+    strcpy(path, tool->parameterPath.c_str());
 
     switch(req.mode)
     {
@@ -854,19 +854,8 @@ void ContinuousbackFunction(const std_msgs::Bool& msg)
     continuousback_flag = msg.data;
 }
 
-void initparameterpath()
-{
-	while(parameter_path == "N")
-	{
-		parameter_path = tool->getPackagePath("strategy");
-	}
-	printf("parameter_path is %s\n", parameter_path.c_str());
-}
-
 int main(int argc, char **argv)
 {
-	initparameterpath();
-
     ros::init(argc, argv, "WalkingGait");
 	ros::NodeHandle nh;
 
