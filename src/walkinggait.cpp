@@ -6,7 +6,15 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
     walkdata.X = msg.x;
     walkdata.Y = msg.y;
     walkdata.Z = msg.z;
-    walkdata.THETA = msg.theta;
+    if(abs(msg.theta) > 20)
+    {
+        walkdata.THETA = pre_theta;
+    }
+    else
+    {
+        walkdata.THETA = msg.theta;
+        pre_theta = msg.theta;
+    }
     walkdata.Sensor_Mode = msg.sensor_mode;
     std::string temp;
     if(walkdata.Sensor_Mode == 0)
