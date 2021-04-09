@@ -69,6 +69,7 @@ tku_msgs::Walking_message walkdata;
 int ContMode = 1;
 bool continuousback_flag = false;
 int pre_x = 0.0;
+int pre_theta = 0;
 int IsWalking = false;
 
 #endif /* LISTENER_NODE_HPP_ */
