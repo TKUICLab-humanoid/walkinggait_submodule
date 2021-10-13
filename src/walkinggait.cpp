@@ -273,7 +273,9 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "X_Swing_COM = " + DtoS(msg.X_Swing_COM) + "\n";
         fp<<savedText;
-        savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z);
+        savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z) + "\n";
+        fp<<savedText;
+        savedText = "Stand_Balance = " + DtoS(msg.Stand_Balance);
         fp<<savedText;
         break;
     case 3:
@@ -462,6 +464,7 @@ void Getparameter(const tku_msgs::Interface& msg)
 
         parameterinfo->parameters.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
         parameterinfo->parameters.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+        parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
     else if( parameterinfo->walking_mode == 3 )
     {
@@ -637,6 +640,7 @@ void Getparameter(const tku_msgs::Interface& msg)
     paradata.Y_Swing_Shift = parameterinfo->parameters.Y_Swing_Shift;
     paradata.X_Swing_COM = parameterinfo->parameters.X_Swing_COM;
     paradata.BASE_LIFT_Z = parameterinfo->parameters.BASE_LIFT_Z;
+    paradata.Stand_Balance = parameterinfo->parameters.Stand_Balance;
     paradata.B_SplineParam.Kick_Point_X = parameterinfo->parameters.Kick_Point_X;
     paradata.B_SplineParam.Kick_Point_Y = parameterinfo->parameters.Kick_Point_Y;
     paradata.B_SplineParam.Kick_Point_Z = parameterinfo->parameters.Kick_Point_Z;

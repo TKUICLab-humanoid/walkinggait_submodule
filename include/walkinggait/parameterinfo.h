@@ -58,6 +58,7 @@ public:
     double Vmin;
     double COM_Height;
     double abswaistx;
+    bool Stand_Balance;
 
     double X_Swing_COM;
     double BASE_LIFT_Z;
