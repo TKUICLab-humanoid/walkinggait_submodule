@@ -34,6 +34,7 @@ Parameters::Parameters()
     this->Vmin = 0.09;
     this->COM_Height = 17.9;
     this->abswaistx = 0;
+    this->Stand_Balance = false;
 
     this->X_Swing_COM = 0;
     this->BASE_LIFT_Z = 0;
