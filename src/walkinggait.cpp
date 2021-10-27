@@ -127,7 +127,7 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
     pre_x = msg.x;
 
     walkdata_Pub.publish(walkdata);
-    tool->Delay(25);
+    tool->Delay(50);
 }
 void ContinousMode(const std_msgs::Int16& msg)
 {
@@ -658,7 +658,7 @@ void Getparameter(const tku_msgs::Interface& msg)
     walkdata.THETA = msg.theta;
     walkdata.Sensor_Mode = msg.sensor_mode;
     walkdata_Pub.publish(walkdata);
-    tool->Delay(25);
+    tool->Delay(100);
 }
 
 bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &req, tku_msgs::WalkingGaitParameter::Response &res)
@@ -878,8 +878,8 @@ int main(int argc, char **argv)
     continuousback_subscriber = nh.subscribe("/walkinggait/Continuousback", 100, ContinuousbackFunction);
     LoadWalkinggaitParameter_service = nh.advertiseService("/web/LoadWalkingGaitParameter", LoadWalkingGaitParameterFunction);
 
-    paradata_Pub = nh.advertise<tku_msgs::Parameter_message>("/package/parameterdata", 1000);
-    walkdata_Pub = nh.advertise<tku_msgs::Walking_message>("/package/walkingdata", 1000);
+    paradata_Pub = nh.advertise<tku_msgs::Parameter_message>("/package/parameterdata", 1);
+    walkdata_Pub = nh.advertise<tku_msgs::Walking_message>("/package/walkingdata", 2);
 
     ros::spin();
 
