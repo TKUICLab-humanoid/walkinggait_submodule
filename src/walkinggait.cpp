@@ -33,7 +33,7 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
     {
         temp = "RollPitch";
     }
-    ROS_INFO("Change Value [%-6d %-6d %-4d; %s]", walkdata.X, walkdata.Y, walkdata.THETA, temp.c_str());
+    ROS_INFO("Change Value [%-6d %-6d %-6d %-4d; %s]", walkdata.X, walkdata.Y, walkdata.Z, walkdata.THETA, temp.c_str());
     if((pre_x<0 && msg.x>=0)||(pre_x>=0 && msg.x<0))
     {
         printf("pre_x:%d\tx:%d\n", pre_x, msg.x);
