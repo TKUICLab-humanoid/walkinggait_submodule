@@ -3,6 +3,7 @@
 void ChangeContinuousValue(const tku_msgs::Interface& msg)
 {
     walkdata.Walking_Cmd = etChangeValue;// start = 0x01, stop = 0x02, change value = 0x04
+    printf("Cmd:%d\n",walkdata.Walking_Cmd);
     walkdata.X = msg.x;
     walkdata.Y = msg.y;
     walkdata.Z = msg.z;
@@ -627,6 +628,7 @@ void Getparameter(const tku_msgs::Interface& msg)
     }
 
     walkdata.Walking_Cmd = etStop;
+    printf("Cmd:%d\n",walkdata.Walking_Cmd);
 
     paradata.Walking_Mode = parameterinfo->walking_mode;
     paradata.X_Swing_Range = parameterinfo->parameters.X_Swing_Range;
@@ -650,7 +652,7 @@ void Getparameter(const tku_msgs::Interface& msg)
     paradata.B_SplineParam.Kick_Foot_Ankle_Upper_Pitch = parameterinfo->parameters.Kick_Foot_Ankle_Upper_Pitch;
     paradata.B_SplineParam.Support_Foot_Ankle_Upper_Pitch = parameterinfo->parameters.Support_Foot_Ankle_Upper_Pitch;
     paradata_Pub.publish(paradata);
-    tool->Delay(25);
+    // tool->Delay(25);
 
     walkdata.X = msg.x;
     walkdata.Y = msg.y;
