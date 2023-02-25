@@ -3,6 +3,7 @@
 void ChangeContinuousValue(const tku_msgs::Interface& msg)
 {
     walkdata.Walking_Cmd = etChangeValue;// start = 0x01, stop = 0x02, change value = 0x04
+    
     walkdata.X = msg.x;
     walkdata.Y = msg.y;
     walkdata.Z = msg.z;
@@ -172,7 +173,9 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "BASE_Default_Z = " + DtoS(msg.BASE_Default_Z) + "\n";
         fp<<savedText;
-        savedText = "Y_Swing_Shift = " + DtoS(msg.Y_Swing_Shift);
+        savedText = "X_Swing_COM = " + DtoS(msg.X_Swing_COM) + "\n";
+        fp<<savedText;
+        savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z);
         fp<<savedText;
         break;
     case 1:
@@ -409,6 +412,7 @@ void save_parameter(const tku_msgs::parameter& msg)
 }
 void Getparameter(const tku_msgs::Interface& msg)
 {
+    // ROS_INFO("%-6d",ContMode);
     char line[SIZE];
     fstream fin;
     parameterinfo->X = (double)msg.x/1000;
@@ -425,7 +429,10 @@ void Getparameter(const tku_msgs::Interface& msg)
 
     if( parameterinfo->walking_mode == 1 )//reload
     {
-        ROS_INFO("Generate Continuous");
+        if(ContMode)
+            ROS_INFO("Generate Continuous start");
+        else
+            ROS_INFO("Generate Continuous stop");
         if(parameterinfo->X >= 0)
         {
             strcat(path, "/Continuous_Parameter.ini");
@@ -685,7 +692,8 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.Sample_Time = tool->readvalue(fin,"Sample_Time",0);
         res.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
         res.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
-        res.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
+        res.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
+	    res.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
         break;
     case 1:
         if(continuousback_flag)
