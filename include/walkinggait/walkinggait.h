@@ -27,7 +27,7 @@
 #include "tku_msgs/Walking_message.h"
 #include "tku_msgs/Interface.h"
 #include "tku_msgs/parameter.h"
-#include "tku_msgs/WalkingGaitParameter.h"
+#include <tku_msgs/WalkingGaitParameter.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Int8.h>
 #include <std_msgs/Int16.h>
