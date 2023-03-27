@@ -458,6 +458,7 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.Sample_Time = tool->readvalue(fin,"Sample_Time",0);
         parameterinfo->parameters.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
         parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
+        parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
     else if( parameterinfo->walking_mode == 2 )
     {
