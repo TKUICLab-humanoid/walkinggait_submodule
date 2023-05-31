@@ -42,7 +42,7 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
         fstream fin;
         char path[200];
         strcpy(path, tool->parameterPath.c_str());
-
+        strcat(path,parameterPath);
         if(parameterinfo->walking_mode == 1)//reload
         {
             if(msg.x >= 0)
@@ -149,6 +149,7 @@ void save_parameter(const tku_msgs::parameter& msg)
     fstream fp;
     char path[200];
     strcpy(path, tool->parameterPath.c_str());
+    strcat(path,parameterPath);
     switch (msg.mode)
     {
     case 4:
@@ -432,7 +433,7 @@ void Getparameter(const tku_msgs::Interface& msg)
 
     char path[200];
     strcpy(path, tool->parameterPath.c_str());
-
+    strcat(path,parameterPath);
     if( parameterinfo->walking_mode == 1 )//reload
     {
         if(ContMode)
@@ -687,7 +688,7 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
     fstream fin;
     char path[200];
     strcpy(path, tool->parameterPath.c_str());
-
+    strcat(path,parameterPath);
     switch(req.mode)
     {
     case 4:
@@ -905,6 +906,12 @@ int main(int argc, char **argv)
 
     paradata_Pub = nh.advertise<tku_msgs::Parameter_message>("/package/parameterdata", 1);
     walkdata_Pub = nh.advertise<tku_msgs::Walking_message>("/package/walkingdata", 2);
+
+    //--根據項目更改位置--//
+    strcat(parameterPath,argv[1]);
+    strcat(parameterPath,"/Parameter");
+    printf("%s\n",parameterPath);
+    //------------------//
 
     ros::spin();
 
