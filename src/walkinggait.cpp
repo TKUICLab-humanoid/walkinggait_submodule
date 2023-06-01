@@ -896,7 +896,8 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "WalkingGait");
 	ros::NodeHandle nh;
-
+    std::string location;
+    nh.getParam("/location",location);
     ContinousMode_subscriber = nh.subscribe("/ContinousMode_Topic", 2, ContinousMode);
     ChangeContinuousValue_subscriber = nh.subscribe("/ChangeContinuousValue_Topic", 2, ChangeContinuousValue);
     chatter_subscriber = nh.subscribe("/SendBodyAuto_Topic", 2, Getparameter);
@@ -908,7 +909,7 @@ int main(int argc, char **argv)
     walkdata_Pub = nh.advertise<tku_msgs::Walking_message>("/package/walkingdata", 2);
 
     //--根據項目更改位置--//
-    strcat(parameterPath,argv[1]);
+    strcat(parameterPath,location.c_str());
     strcat(parameterPath,"/Parameter");
     printf("%s\n",parameterPath);
     //------------------//
