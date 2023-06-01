@@ -41,8 +41,8 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
         char line[SIZE];
         fstream fin;
         char path[200];
-        strcpy(path, tool->parameterPath.c_str());
-        strcat(path,parameterPath);
+        strcpy(path, tool->getPackagePath(parameterPath).c_str());
+        strcat(path,"/Parameter");
         if(parameterinfo->walking_mode == 1)//reload
         {
             if(msg.x >= 0)
@@ -148,8 +148,8 @@ void save_parameter(const tku_msgs::parameter& msg)
     string savedText;
     fstream fp;
     char path[200];
-    strcpy(path, tool->parameterPath.c_str());
-    strcat(path,parameterPath);
+    strcpy(path, tool->getPackagePath(parameterPath).c_str());
+    strcat(path,"/Parameter");
     switch (msg.mode)
     {
     case 4:
@@ -432,8 +432,8 @@ void Getparameter(const tku_msgs::Interface& msg)
     pre_x = parameterinfo->X;
 
     char path[200];
-    strcpy(path, tool->parameterPath.c_str());
-    strcat(path,parameterPath);
+    strcpy(path, tool->getPackagePath(parameterPath).c_str());
+    strcat(path,"/Parameter");
     if( parameterinfo->walking_mode == 1 )//reload
     {
         if(ContMode)
@@ -687,8 +687,9 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
     char line[SIZE];
     fstream fin;
     char path[200];
-    strcpy(path, tool->parameterPath.c_str());
-    strcat(path,parameterPath);
+    strcpy(path, tool->getPackagePath(parameterPath).c_str());
+    strcat(path,"/Parameter");
+    printf("%s",path);
     switch(req.mode)
     {
     case 4:
@@ -910,7 +911,6 @@ int main(int argc, char **argv)
 
     //--根據項目更改位置--//
     strcat(parameterPath,location.c_str());
-    strcat(parameterPath,"/Parameter");
     printf("%s\n",parameterPath);
     //------------------//
 
