@@ -63,6 +63,7 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
             parameterinfo->parameters.Period_T2 = tool->readvalue(fin,"Period_T2",0);
             parameterinfo->parameters.Sample_Time = tool->readvalue(fin,"Sample_Time",0);
             parameterinfo->parameters.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
+            parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
             parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
         }
         else if( parameterinfo->walking_mode == 7 )
@@ -175,6 +176,8 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "X_Swing_COM = " + DtoS(msg.X_Swing_COM) + "\n";
         fp<<savedText;
+        savedText = "Y_Swing_Shift = " + DtoS(msg.Y_Swing_Shift) + "\n";
+        fp<<savedText;
         savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z) + "\n";
         fp<<savedText;
         savedText = "Stand_Balance = " + DtoS(msg.Stand_Balance);
@@ -201,6 +204,8 @@ void save_parameter(const tku_msgs::parameter& msg)
         savedText = "Sample_Time = " + DtoS(msg.Sample_Time) + "\n";
         fp<<savedText;
         savedText = "OSC_LockRange = " + DtoS(msg.OSC_LockRange) + "\n";
+        fp<<savedText;
+        savedText = "Y_Swing_Shift = " + DtoS(msg.Y_Swing_Shift) + "\n";
         fp<<savedText;
         savedText = "BASE_Default_Z = " + DtoS(msg.BASE_Default_Z) + "\n";
         fp<<savedText;
@@ -280,6 +285,8 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "X_Swing_COM = " + DtoS(msg.X_Swing_COM) + "\n";
         fp<<savedText;
+        savedText = "Y_Swing_Shift = " + DtoS(msg.Y_Swing_Shift) + "\n";
+        fp<<savedText;
         savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z) + "\n";
         fp<<savedText;
         savedText = "Stand_Balance = " + DtoS(msg.Stand_Balance);
@@ -307,6 +314,8 @@ void save_parameter(const tku_msgs::parameter& msg)
         savedText = "BASE_Default_Z = " + DtoS(msg.BASE_Default_Z) + "\n";
         fp<<savedText;
         savedText = "X_Swing_COM = " + DtoS(msg.X_Swing_COM) + "\n";
+        fp<<savedText;
+        savedText = "Y_Swing_Shift = " + DtoS(msg.Y_Swing_Shift) + "\n";
         fp<<savedText;
         savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z) + "\n";
         fp<<savedText;
@@ -457,6 +466,7 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.Period_T2 = tool->readvalue(fin,"Period_T2",0);
         parameterinfo->parameters.Sample_Time = tool->readvalue(fin,"Sample_Time",0);
         parameterinfo->parameters.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
+        parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
         parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
@@ -477,6 +487,7 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
 
         parameterinfo->parameters.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
+        parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         parameterinfo->parameters.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
         parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
@@ -497,6 +508,7 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
 
         parameterinfo->parameters.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
+        parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         parameterinfo->parameters.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
         parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
@@ -730,6 +742,7 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.Period_T2 = tool->readvalue(fin,"Period_T2",0);
         res.Sample_Time = tool->readvalue(fin,"Sample_Time",0);
         res.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
+        res.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         res.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
         res.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         break;
@@ -794,7 +807,8 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
         res.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
         res.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
-	    res.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+	    res.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
+        res.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
         res.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         break;
     case 3:
@@ -812,6 +826,7 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
         res.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
         res.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
+        res.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         res.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
         res.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         break;
@@ -885,6 +900,8 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
 
     return true;
 }
+
+
 
 void ContinuousbackFunction(const std_msgs::Bool& msg)
 {
