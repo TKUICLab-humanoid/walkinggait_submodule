@@ -41,7 +41,8 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
         char line[SIZE];
         fstream fin;
         char path[200];
-        strcpy(path, tool->parameterPath.c_str());
+        strcpy(path, tool->getPackagePath(parameterPath).c_str());
+        strcat(path,"/Parameter");
 
         if(parameterinfo->walking_mode == 1)//reload
         {
@@ -149,7 +150,8 @@ void save_parameter(const tku_msgs::parameter& msg)
     string savedText;
     fstream fp;
     char path[200];
-    strcpy(path, tool->parameterPath.c_str());
+    strcpy(path, tool->getPackagePath(parameterPath).c_str());
+    strcat(path,"/Parameter");
     switch (msg.mode)
     {
     case 4:
@@ -440,8 +442,8 @@ void Getparameter(const tku_msgs::Interface& msg)
     pre_x = parameterinfo->X;
 
     char path[200];
-    strcpy(path, tool->parameterPath.c_str());
-
+    strcpy(path, tool->getPackagePath(parameterPath).c_str());
+    strcat(path,"/Parameter");
     if( parameterinfo->walking_mode == 1 )//reload
     {
         if(ContMode)
@@ -698,8 +700,9 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
     char line[SIZE];
     fstream fin;
     char path[200];
-    strcpy(path, tool->parameterPath.c_str());
-
+    strcpy(path, tool->getPackagePath(parameterPath).c_str());
+    strcat(path,"/Parameter");
+    printf("%s",path);
     switch(req.mode)
     {
     case 4:
@@ -912,7 +915,8 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "WalkingGait");
 	ros::NodeHandle nh;
-
+    std::string location;
+    nh.getParam("/location",location);
     ContinousMode_subscriber = nh.subscribe("/ContinousMode_Topic", 2, ContinousMode);
     ChangeContinuousValue_subscriber = nh.subscribe("/ChangeContinuousValue_Topic", 2, ChangeContinuousValue);
     chatter_subscriber = nh.subscribe("/SendBodyAuto_Topic", 2, Getparameter);
@@ -922,6 +926,11 @@ int main(int argc, char **argv)
 
     paradata_Pub = nh.advertise<tku_msgs::Parameter_message>("/package/parameterdata", 1);
     walkdata_Pub = nh.advertise<tku_msgs::Walking_message>("/package/walkingdata", 2);
+
+    //--根據項目更改位置--//
+    strcat(parameterPath,location.c_str());
+    printf("%s\n",parameterPath);
+    //------------------//
 
     ros::spin();
 
