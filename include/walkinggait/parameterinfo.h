@@ -71,6 +71,11 @@ public:
     double Support_Foot_Hip_Upper_Pitch;
     double Kick_Foot_Ankle_Upper_Pitch;
     double Support_Foot_Ankle_Upper_Pitch;
+    
+    double rightfoot_shift_z;
+    double com_y_swing;
+    double now_stand_height;
+    double now_com_height;
 
 clock_t system_start;
 clock_t system_end;

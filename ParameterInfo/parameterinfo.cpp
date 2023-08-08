@@ -47,6 +47,11 @@ Parameters::Parameters()
     this->Support_Foot_Hip_Upper_Pitch = 0;
     this->Kick_Foot_Ankle_Upper_Pitch = 0;
     this->Support_Foot_Ankle_Upper_Pitch = 0;
+
+    this->rightfoot_shift_z = 0;
+    this->com_y_swing = 0;
+    this->now_stand_height = 23.5;
+    this->now_com_height = 29.5;
 }
 
 Parameters::~Parameters()
