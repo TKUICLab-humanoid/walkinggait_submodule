@@ -66,6 +66,11 @@ void ChangeContinuousValue(const tku_msgs::Interface& msg)
             parameterinfo->parameters.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
             parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
             parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
+            /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+            parameterinfo->parameters.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+            parameterinfo->parameters.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+            parameterinfo->parameters.now_com_height = tool->readvalue(fin,"now_com_height",1);
+            /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         }
         else if( parameterinfo->walking_mode == 7 )
         {
@@ -182,6 +187,16 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z) + "\n";
         fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        savedText = "rightfoot_shift_z = " + DtoS(msg.rightfoot_shift_z) + "\n";
+        fp<<savedText;
+        savedText = "com_y_swing = " + DtoS(msg.com_y_swing) + "\n";
+        fp<<savedText;
+        savedText = "now_stand_height = " + DtoS(msg.now_stand_height) + "\n";
+        fp<<savedText;
+        savedText = "now_com_height = " + DtoS(msg.now_com_height) + "\n";
+        fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         savedText = "Stand_Balance = " + DtoS(msg.Stand_Balance);
         fp<<savedText;
         break;
@@ -211,6 +226,14 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "BASE_Default_Z = " + DtoS(msg.BASE_Default_Z) + "\n";
         fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        savedText = "com_y_swing = " + DtoS(msg.com_y_swing) + "\n";
+        fp<<savedText;
+        savedText = "now_stand_height = " + DtoS(msg.now_stand_height) + "\n";
+        fp<<savedText;
+        savedText = "now_com_height = " + DtoS(msg.now_com_height) + "\n";
+        fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         savedText = "Stand_Balance = " + DtoS(msg.Stand_Balance);
         fp<<savedText;
         break;
@@ -291,6 +314,16 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z) + "\n";
         fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        savedText = "rightfoot_shift_z = " + DtoS(msg.rightfoot_shift_z) + "\n";
+        fp<<savedText;
+        savedText = "com_y_swing = " + DtoS(msg.com_y_swing) + "\n";
+        fp<<savedText;
+        savedText = "now_stand_height = " + DtoS(msg.now_stand_height) + "\n";
+        fp<<savedText;
+        savedText = "now_com_height = " + DtoS(msg.now_com_height) + "\n";
+        fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         savedText = "Stand_Balance = " + DtoS(msg.Stand_Balance);
         fp<<savedText;
         break;
@@ -321,6 +354,16 @@ void save_parameter(const tku_msgs::parameter& msg)
         fp<<savedText;
         savedText = "BASE_LIFT_Z = " + DtoS(msg.BASE_LIFT_Z) + "\n";
         fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        savedText = "rightfoot_shift_z = " + DtoS(msg.rightfoot_shift_z) + "\n";
+        fp<<savedText;
+        savedText = "com_y_swing = " + DtoS(msg.com_y_swing) + "\n";
+        fp<<savedText;
+        savedText = "now_stand_height = " + DtoS(msg.now_stand_height) + "\n";
+        fp<<savedText;
+        savedText = "now_com_height = " + DtoS(msg.now_com_height) + "\n";
+        fp<<savedText;
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         savedText = "Stand_Balance = " + DtoS(msg.Stand_Balance);
         fp<<savedText;
         break;
@@ -470,6 +513,11 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
         parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        parameterinfo->parameters.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+        parameterinfo->parameters.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+        parameterinfo->parameters.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
     else if( parameterinfo->walking_mode == 2 )
@@ -491,6 +539,12 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
         parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         parameterinfo->parameters.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        parameterinfo->parameters.rightfoot_shift_z = tool->readvalue(fin,"rightfoot_shift_z",1);
+        parameterinfo->parameters.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+        parameterinfo->parameters.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+        parameterinfo->parameters.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
     else if( parameterinfo->walking_mode == 3 )
@@ -512,6 +566,12 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
         parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         parameterinfo->parameters.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        parameterinfo->parameters.rightfoot_shift_z = tool->readvalue(fin,"rightfoot_shift_z",1);
+        parameterinfo->parameters.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+        parameterinfo->parameters.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+        parameterinfo->parameters.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
     }
     else if(parameterinfo->walking_mode == 5)
@@ -651,6 +711,12 @@ void Getparameter(const tku_msgs::Interface& msg)
         parameterinfo->parameters.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
         parameterinfo->parameters.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
         parameterinfo->parameters.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        parameterinfo->parameters.rightfoot_shift_z = tool->readvalue(fin,"rightfoot_shift_z",1);
+        parameterinfo->parameters.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+        parameterinfo->parameters.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+        parameterinfo->parameters.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         parameterinfo->parameters.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         // parameterinfo->parameters.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         // if((parameterinfo->Y >= 1) || (parameterinfo->Y <= -1))
@@ -673,6 +739,12 @@ void Getparameter(const tku_msgs::Interface& msg)
     paradata.Y_Swing_Shift = parameterinfo->parameters.Y_Swing_Shift;
     paradata.X_Swing_COM = parameterinfo->parameters.X_Swing_COM;
     paradata.BASE_LIFT_Z = parameterinfo->parameters.BASE_LIFT_Z;
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    paradata.rightfoot_shift_z = parameterinfo->parameters.rightfoot_shift_z;
+    paradata.com_y_swing = parameterinfo->parameters.com_y_swing;
+    paradata.now_stand_height = parameterinfo->parameters.now_stand_height;
+    paradata.now_com_height = parameterinfo->parameters.now_com_height;
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
     paradata.Stand_Balance = parameterinfo->parameters.Stand_Balance;
     ROS_INFO("%d",paradata.Stand_Balance);
     paradata.B_SplineParam.Kick_Point_X = parameterinfo->parameters.Kick_Point_X;
@@ -722,6 +794,12 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
         res.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
 	    res.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	    res.rightfoot_shift_z = tool->readvalue(fin,"rightfoot_shift_z",1);
+	    res.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+	    res.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+	    res.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         res.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         break;
     case 1:
@@ -747,6 +825,11 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.OSC_LockRange = tool->readvalue(fin,"OSC_LockRange",1);
         res.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         res.BASE_Default_Z = tool->readvalue(fin,"BASE_Default_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	    res.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+	    res.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+	    res.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         res.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         break;
     case 7:
@@ -812,6 +895,12 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
 	    res.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         res.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	    res.rightfoot_shift_z = tool->readvalue(fin,"rightfoot_shift_z",1);
+	    res.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+	    res.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+	    res.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         res.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         break;
     case 3:
@@ -831,6 +920,12 @@ bool LoadWalkingGaitParameterFunction(tku_msgs::WalkingGaitParameter::Request &r
         res.X_Swing_COM = tool->readvalue(fin,"X_Swing_COM",1);
         res.Y_Swing_Shift = tool->readvalue(fin,"Y_Swing_Shift",1);
         res.BASE_LIFT_Z = tool->readvalue(fin,"BASE_LIFT_Z",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	    res.rightfoot_shift_z = tool->readvalue(fin,"rightfoot_shift_z",1);
+	    res.com_y_swing = tool->readvalue(fin,"com_y_swing",1);
+	    res.now_stand_height = tool->readvalue(fin,"now_stand_height",1);
+	    res.now_com_height = tool->readvalue(fin,"now_com_height",1);
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!*/
         res.Stand_Balance = tool->readvalue(fin,"Stand_Balance",1);
         break;
     case 5:
